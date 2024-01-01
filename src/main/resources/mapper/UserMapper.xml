@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mybatis_practice.repository.UserMapper">
+
+    <resultMap id="userMap" type="com.example.mybatis_practice.repository.User">
+        <id property="id" column="ID" />
+        <result property="name" column="NAME"/>
+        <result property="email" column="EMAIL"/>
+        <result property="teamId" column="TEAM_ID"/>
+        <association property="address" resultMap="addressMap"/>
+    </resultMap>
+
+    <resultMap id="addressMap" type="com.example.mybatis_practice.repository.Address">
+        <result property="country" column="COUNTRY"/>
+        <result property="city" column="CITY"/>
+        <result property="street" column="STREET"/>
+        <result property="zipcode" column="ZIPCODE"/>
+    </resultMap>
+
+
+    <resultMap id="userList" type="com.example.mybatis_practice.repository.User">
+        <id property="id" column="USER_ID" />
+        <result property="name" column="USER_NAME"/>
+        <result property="email" column="USER_EMAIL"/>
+        <result property="teamId" column="TEAM_ID"/>
+        <association property="address" resultMap="addressMap"/>
+    </resultMap>
+
+    <resultMap id="teamMap" type="com.example.mybatis_practice.repository.Team">
+        <id property="id" column="ID" />
+        <result property="name" column="NAME"/>
+        <collection property="users" resultMap="userList"/>
+    </resultMap>
+
+</mapper>
